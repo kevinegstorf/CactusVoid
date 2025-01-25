@@ -5,20 +5,17 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const KRAKEN_API_BASE_URL = 'https://api.kraken.com';
-const API_KEY = process.env.KRAKEN_API_KEY;
-const API_SECRET = process.env.KRAKEN_API_SECRET;
-
-if (!API_KEY || !API_SECRET) {
-  throw new Error('Missing API keys in environment variables.');
-}
+const getApiKey = () => process.env.KRAKEN_API_KEY || '';
+const getApiSecret = () => process.env.KRAKEN_API_SECRET || '';
 
 const createSignature = (
   path: string,
   nonce: string,
   requestData: string,
+  apiSecret: string,
 ): string => {
   const message = `${nonce}${requestData}`;
-  const secretBuffer = Buffer.from(API_SECRET, 'base64');
+  const secretBuffer = Buffer.from(apiSecret, 'base64');
   const hash = crypto.createHash('sha256').update(message).digest();
   return crypto
     .createHmac('sha512', secretBuffer)
@@ -31,6 +28,8 @@ const krakenRequest = async (
   method: 'GET' | 'POST',
   params: Record<string, string> = {},
   isPrivate = false,
+  apiKey: string,
+  apiSecret: string,
 ) => {
   const path = `/0${endpoint}`;
   let url = `${KRAKEN_API_BASE_URL}${path}`;
@@ -41,10 +40,10 @@ const krakenRequest = async (
 
   if (isPrivate) {
     const requestData = new URLSearchParams({ ...params, nonce }).toString();
-    const signature = createSignature(path, nonce, requestData);
+    const signature = createSignature(path, nonce, requestData, apiSecret);
 
     headers = {
-      'API-Key': API_KEY,
+      'API-Key': apiKey,
       'API-Sign': signature,
     };
     body = requestData;
@@ -70,8 +69,8 @@ const krakenRequest = async (
 
 export const KrakenService = {
   publicRequest: (endpoint: string, params: Record<string, string> = {}) =>
-    krakenRequest(endpoint, 'GET', params, false),
+    krakenRequest(endpoint, 'GET', params, false, '', ''),
 
   privateRequest: (endpoint: string, params: Record<string, string> = {}) =>
-    krakenRequest(endpoint, 'POST', params, true),
+    krakenRequest(endpoint, 'POST', params, true, getApiKey(), getApiSecret()),
 };
