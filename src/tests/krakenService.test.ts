@@ -1,12 +1,17 @@
 import axios from 'axios';
+jest.mock('dotenv', () => ({
+  config: () => ({
+    parsed: {
+      KRAKEN_API_KEY: 'mockApiKey',
+      KRAKEN_API_SECRET: 'mockApiSecret',
+    },
+  }),
+}));
+
 import { KrakenService } from '../services/krakenService';
 
-// Use jest.mock with function implementation
-jest.mock('axios', () => ({
-  get: jest.fn(),
-  post: jest.fn(),
-  isAxiosError: jest.fn(),
-}));
+jest.mock('axios');
+const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 // Mock environment variables
 process.env.KRAKEN_API_KEY = 'mockApiKey';
@@ -35,14 +40,14 @@ describe('KrakenService', () => {
       },
     };
 
-    (axios.get as jest.Mock).mockResolvedValue({ data: mockTickerData });
+    mockedAxios.get.mockResolvedValue({ data: mockTickerData });
 
     const tickerData = await KrakenService.publicRequest('/public/Ticker', {
       pair: 'BTCUSD',
     });
 
     expect(tickerData).toEqual(mockTickerData);
-    expect(axios.get).toHaveBeenCalledWith(
+    expect(mockedAxios.get).toHaveBeenCalledWith(
       'https://api.kraken.com/0/public/Ticker?pair=BTCUSD',
       { headers: {} },
     );
@@ -53,18 +58,18 @@ describe('KrakenService', () => {
       error: [],
       result: {
         ATOM: '0.00000000',
-        'ETH.F': '1.345798',
+        'ETH.F': '0.0366863259',
         SOL: '0.0000000000',
         XETH: '0.0000000000',
       },
     };
 
-    (axios.post as jest.Mock).mockResolvedValue({ data: mockBalanceData });
+    mockedAxios.post.mockResolvedValue({ data: mockBalanceData });
 
     const balanceData = await KrakenService.privateRequest('/private/Balance');
 
     expect(balanceData).toEqual(mockBalanceData);
-    expect(axios.post).toHaveBeenCalledWith(
+    expect(mockedAxios.post).toHaveBeenCalledWith(
       'https://api.kraken.com/0/private/Balance',
       expect.any(String),
       expect.any(Object),
