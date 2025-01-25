@@ -4,6 +4,10 @@ import { KrakenService } from '../services/krakenService';
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
+// Mock environment variables
+process.env.KRAKEN_API_KEY = 'mockApiKey';
+process.env.KRAKEN_API_SECRET = 'mockApiSecret';
+
 describe('KrakenService', () => {
   afterEach(() => {
     jest.clearAllMocks();
@@ -36,7 +40,7 @@ describe('KrakenService', () => {
     expect(tickerData).toEqual(mockTickerData);
     expect(mockedAxios.get).toHaveBeenCalledWith(
       'https://api.kraken.com/0/public/Ticker?pair=BTCUSD',
-      {"headers": {}}
+      { headers: {} },
     );
   });
 
@@ -45,7 +49,7 @@ describe('KrakenService', () => {
       error: [],
       result: {
         ATOM: '0.00000000',
-        'ETH.F': '1.465',
+        'ETH.F': '0.0366863259',
         SOL: '0.0000000000',
         XETH: '0.0000000000',
       },
