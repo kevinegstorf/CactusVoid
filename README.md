@@ -1,5 +1,7 @@
 # CactusVoid
 
+![CI](https://github.com/kevinegstorf/CactusVoid/actions/workflows/ci.yml/badge.svg)
+
 ## Getting Started
 
 ### Prerequisites
@@ -10,46 +12,52 @@
 ### Installation
 
 1. Clone the repository:
-    ```sh
-    git clone <repository-url>
-    cd cactusvoid
-    ```
+
+   ```sh
+   git clone <repository-url>
+   cd cactusvoid
+   ```
 
 2. Install dependencies:
-    ```sh
-    npm install
-    ```
+
+   ```sh
+   npm install
+   ```
 
 3. Create a [.env](http://_vscodecontentref_/1) file in the root directory and add the following environment variables:
-    ```sh
-    KRAKEN_API_KEY=your_api_key
-    KRAKEN_API_SECRET=your_api_secret
-    DB_CONNECTION_STRING=your_database_connection_string
-    ```
 
-    You can use the [.env-example](http://_vscodecontentref_/2) file as a reference.
+   ```sh
+   KRAKEN_API_KEY=your_api_key
+   KRAKEN_API_SECRET=your_api_secret
+   DB_CONNECTION_STRING=your_database_connection_string
+   ```
+
+   You can use the [.env-example](http://_vscodecontentref_/2) file as a reference.
 
 ### Running the Project
 
 - To start the project:
-    ```sh
-    npm start
-    ```
+
+  ```sh
+  npm start
+  ```
 
 - To start the project in development mode with hot-reloading:
-    ```sh
-    npm run dev
-    ```
+
+  ```sh
+  npm run dev
+  ```
 
 - To build the project:
-    ```sh
-    npm run build
-    ```
+
+  ```sh
+  npm run build
+  ```
 
 - To run tests:
-    ```sh
-    npm test
-    ```
+  ```sh
+  npm test
+  ```
 
 ### Project Structure
 
