@@ -13,19 +13,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '14'
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "14"
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Build the project
-      run: npm run build
+      - name: Lint the code
+        run: npm run lint
 
-    - name: Run tests
-      run: npm test
+      - name: Format the code
+        run: npm run format -- --check
+
+      - name: Build the project
+        run: npm run build
+
+      - name: Run tests
+        run: npm test
