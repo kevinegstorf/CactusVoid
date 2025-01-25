@@ -12,12 +12,6 @@ if (!API_KEY || !API_SECRET) {
   throw new Error('Missing API keys in environment variables.');
 }
 
-/**
- * Generate the API signature required for private endpoints.
- * @param path API endpoint path (e.g., '/0/private/Balance')
- * @param nonce Unique nonce value
- * @param requestData Additional data sent with the request
- */
 const createSignature = (
   path: string,
   nonce: string,
@@ -32,13 +26,6 @@ const createSignature = (
     .digest('base64');
 };
 
-/**
- * Send a request to Kraken's API.
- * @param endpoint API endpoint (e.g., '/0/private/Balance')
- * @param method HTTP method ('GET' or 'POST')
- * @param params Query or body parameters
- * @param isPrivate Whether the endpoint requires authentication
- */
 const krakenRequest = async (
   endpoint: string,
   method: 'GET' | 'POST',
@@ -53,7 +40,6 @@ const krakenRequest = async (
   let body = '';
 
   if (isPrivate) {
-    // Generate request body and signature
     const requestData = new URLSearchParams({ ...params, nonce }).toString();
     const signature = createSignature(path, nonce, requestData);
 
@@ -63,31 +49,25 @@ const krakenRequest = async (
     };
     body = requestData;
   } else {
-    // For public endpoints, pass params as query strings
     const queryParams = new URLSearchParams(params).toString();
     url += queryParams ? `?${queryParams}` : '';
   }
 
   try {
-    const response = await axios({
-      method,
-      url,
-      headers,
-      data: body,
-    });
-
+    const response = await (method === 'GET'
+      ? axios.get(url, { headers })
+      : axios.post(url, body, { headers }));
     return response.data;
-  } catch (error) {
+  } catch (error: any) {
     if (axios.isAxiosError(error)) {
       console.error('Kraken API error:', error.response?.data || error.message);
     } else {
-      console.error('Kraken API error:', error);
+      console.error('Kraken API error:', error.message);
     }
     throw error;
   }
 };
 
-// Exported methods for public and private endpoints
 export const KrakenService = {
   publicRequest: (endpoint: string, params: Record<string, string> = {}) =>
     krakenRequest(endpoint, 'GET', params, false),
