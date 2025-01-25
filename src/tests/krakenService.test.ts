@@ -1,8 +1,12 @@
 import axios from 'axios';
 import { KrakenService } from '../services/krakenService';
 
-jest.mock('axios');
-const mockedAxios = axios as jest.Mocked<typeof axios>;
+// Use jest.mock with function implementation
+jest.mock('axios', () => ({
+  get: jest.fn(),
+  post: jest.fn(),
+  isAxiosError: jest.fn(),
+}));
 
 // Mock environment variables
 process.env.KRAKEN_API_KEY = 'mockApiKey';
@@ -31,14 +35,14 @@ describe('KrakenService', () => {
       },
     };
 
-    mockedAxios.get.mockResolvedValue({ data: mockTickerData });
+    (axios.get as jest.Mock).mockResolvedValue({ data: mockTickerData });
 
     const tickerData = await KrakenService.publicRequest('/public/Ticker', {
       pair: 'BTCUSD',
     });
 
     expect(tickerData).toEqual(mockTickerData);
-    expect(mockedAxios.get).toHaveBeenCalledWith(
+    expect(axios.get).toHaveBeenCalledWith(
       'https://api.kraken.com/0/public/Ticker?pair=BTCUSD',
       { headers: {} },
     );
@@ -55,12 +59,12 @@ describe('KrakenService', () => {
       },
     };
 
-    mockedAxios.post.mockResolvedValue({ data: mockBalanceData });
+    (axios.post as jest.Mock).mockResolvedValue({ data: mockBalanceData });
 
     const balanceData = await KrakenService.privateRequest('/private/Balance');
 
     expect(balanceData).toEqual(mockBalanceData);
-    expect(mockedAxios.post).toHaveBeenCalledWith(
+    expect(axios.post).toHaveBeenCalledWith(
       'https://api.kraken.com/0/private/Balance',
       expect.any(String),
       expect.any(Object),
