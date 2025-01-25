@@ -25,7 +25,43 @@ jobs:
         run: npm install
 
       - name: Lint the code
-        run: npm run lint
+        run: npm run        name: CI
+        
+        on:
+          push:
+            branches:
+              - main
+          pull_request:
+            branches:
+              - main
+        
+        jobs:
+          build:
+            runs-on: ubuntu-latest
+        
+            steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
+        
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                node-version: '16'  # Ensure Node.js version is 16 or higher
+        
+            - name: Install dependencies
+              run: npm install
+        
+            - name: Lint the code
+              run: npm run lint
+        
+            - name: Format the code
+              run: npm run format -- --check
+        
+            - name: Build the project
+              run: npm run build
+        
+            - name: Run tests
+              run: npm test lint
 
       - name: Format the code
         run: npm run format -- --check
