@@ -1,4 +1,13 @@
 import axios from 'axios';
+jest.mock('dotenv', () => ({
+  config: () => ({
+    parsed: {
+      KRAKEN_API_KEY: 'mockApiKey',
+      KRAKEN_API_SECRET: 'mockApiSecret',
+    },
+  }),
+}));
+
 import { KrakenService } from '../services/krakenService';
 
 jest.mock('axios');
