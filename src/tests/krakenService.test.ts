@@ -1,13 +1,4 @@
 import axios from 'axios';
-jest.mock('dotenv', () => ({
-  config: () => ({
-    parsed: {
-      KRAKEN_API_KEY: 'mockApiKey',
-      KRAKEN_API_SECRET: 'mockApiSecret',
-    },
-  }),
-}));
-
 import { KrakenService } from '../services/krakenService';
 
 jest.mock('axios');
@@ -58,7 +49,7 @@ describe('KrakenService', () => {
       error: [],
       result: {
         ATOM: '0.00000000',
-        'ETH.F': '0.0366863259',
+        'ETH.F': '1.345798',
         SOL: '0.0000000000',
         XETH: '0.0000000000',
       },
