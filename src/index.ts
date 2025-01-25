@@ -1,3 +1,3 @@
 import 'dotenv/config';
 
-console.log("Node.js TypeScript project initialized!");
+console.log('Node.js TypeScript project initialized!');

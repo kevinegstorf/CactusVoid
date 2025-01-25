@@ -1,18 +1,21 @@
 import globals from 'globals';
-import pluginJs from '@eslint/js';
 import tseslint from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
+import jestPlugin from 'eslint-plugin-jest';
 
-/** @type {import('eslint').Linter.Config[]} */
 export default [
   {
     files: ['**/*.{js,mjs,cjs,ts}'],
     languageOptions: {
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
       parser: tsParser,
     },
     plugins: {
       '@typescript-eslint': tseslint,
+      'jest': jestPlugin,
     },
     rules: {
       'constructor-super': 'error',
@@ -25,6 +28,13 @@ export default [
       'valid-typeof': 'error',
     },
   },
-  pluginJs.configs.recommended,
-  tseslint.configs.recommended,
+  {
+    files: ['**/*.{test,spec}.{js,mjs,cjs,ts}'],
+    plugins: {
+      'jest': jestPlugin,
+    },
+    languageOptions: {
+      globals: jestPlugin.environments.globals.globals,
+    },
+  },
 ];
