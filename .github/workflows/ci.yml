@@ -26,7 +26,7 @@ jobs:
         run: npm ci
 
       - name: Run tests
-        run: nx test scraper 
+        run: npx nx test scraper
 
       - name: Build the project
-        run: nx build scraper
+        run: npx nx build scraper
