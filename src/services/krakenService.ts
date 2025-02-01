@@ -57,11 +57,11 @@ const krakenRequest = async (
       ? axios.get(url, { headers })
       : axios.post(url, body, { headers }));
     return response.data;
-  } catch (error: any) {
+  } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error('Kraken API error:', error.response?.data || error.message);
     } else {
-      console.error('Kraken API error:', error.message);
+      console.error('Kraken API error:', (error as Error).message);
     }
     throw error;
   }
