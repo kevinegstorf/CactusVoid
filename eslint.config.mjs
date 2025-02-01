@@ -1,40 +1,40 @@
-import globals from 'globals';
-import tseslint from '@typescript-eslint/eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
-import jestPlugin from 'eslint-plugin-jest';
+import nx from '@nx/eslint-plugin';
 
 export default [
+  ...nx.configs['flat/base'],
+  ...nx.configs['flat/typescript'],
+  ...nx.configs['flat/javascript'],
   {
-    files: ['**/*.{js,mjs,cjs,ts}'],
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
-      parser: tsParser,
-    },
-    plugins: {
-      '@typescript-eslint': tseslint,
-      'jest': jestPlugin,
-    },
+    ignores: ['**/dist'],
+  },
+  {
+    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     rules: {
-      'constructor-super': 'error',
-      'no-const-assign': 'error',
-      'no-this-before-super': 'error',
-      'no-undef': 'error',
-      'no-unreachable': 'error',
-      'no-unused-vars': 'warn',
-      'no-use-before-define': 'error',
-      'valid-typeof': 'error',
+      '@nx/enforce-module-boundaries': [
+        'error',
+        {
+          enforceBuildableLibDependency: true,
+          allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?js$'],
+          depConstraints: [
+            {
+              sourceTag: '*',
+              onlyDependOnLibsWithTags: ['*'],
+            },
+          ],
+        },
+      ],
     },
   },
   {
-    files: ['**/*.{test,spec}.{js,mjs,cjs,ts}'],
-    plugins: {
-      'jest': jestPlugin,
-    },
-    languageOptions: {
-      globals: jestPlugin.environments.globals.globals,
-    },
+    files: [
+      '**/*.ts',
+      '**/*.tsx',
+      '**/*.js',
+      '**/*.jsx',
+      '**/*.cjs',
+      '**/*.mjs',
+    ],
+    // Override or add rules here
+    rules: {},
   },
 ];

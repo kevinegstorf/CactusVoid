@@ -1,0 +1,21 @@
+{
+  "run": {
+    "command": "nx test scraper",
+    "startTime": "2025-02-01T10:18:39.526Z",
+    "endTime": "2025-02-01T10:18:41.456Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "scraper:test",
+      "target": "test",
+      "projectName": "scraper",
+      "hash": "453130020624585826",
+      "startTime": "2025-02-01T10:18:39.550Z",
+      "endTime": "2025-02-01T10:18:41.454Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    }
+  ]
+}

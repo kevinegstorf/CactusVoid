@@ -1,0 +1,218 @@
+{
+  "version": "6.0",
+  "nxVersion": "20.4.0",
+  "pathMappings": {},
+  "nxJsonPlugins": [
+    {
+      "name": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    },
+    {
+      "name": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
+      }
+    }
+  ],
+  "fileMap": {
+    "nonProjectFiles": [],
+    "projectFileMap": {
+      "@cactusvoid-monorepo/source": [
+        {
+          "file": ".DS_Store",
+          "hash": "2261657001419427267"
+        },
+        {
+          "file": ".env-example",
+          "hash": "848693620730897536"
+        },
+        {
+          "file": ".github/workflows/ci.yml",
+          "hash": "13345407374163275319"
+        },
+        {
+          "file": ".gitignore",
+          "hash": "9105284875257242407"
+        },
+        {
+          "file": ".prettierrc",
+          "hash": "10280951067624587585"
+        },
+        {
+          "file": "README.md",
+          "hash": "17225747962019967545"
+        },
+        {
+          "file": "eslint.config.mjs",
+          "hash": "1594583457463533477",
+          "deps": [
+            "npm:@nx/eslint-plugin"
+          ]
+        },
+        {
+          "file": "jest.config.js",
+          "hash": "6063441386714164903"
+        },
+        {
+          "file": "jest.config.ts",
+          "hash": "3494843969422251966",
+          "deps": [
+            "npm:@nx/jest"
+          ]
+        },
+        {
+          "file": "jest.preset.js",
+          "hash": "9430166341120122740",
+          "deps": [
+            "npm:@nx/jest"
+          ]
+        },
+        {
+          "file": "nx.json",
+          "hash": "3110563153376149316"
+        },
+        {
+          "file": "package-lock.json",
+          "hash": "7220791686328193849"
+        },
+        {
+          "file": "package.json",
+          "hash": "2322267685713273256",
+          "deps": [
+            "npm:@eslint/js",
+            "npm:@nx/esbuild",
+            "npm:@nx/eslint",
+            "npm:@nx/eslint-plugin",
+            "npm:@nx/jest",
+            "npm:@nx/js",
+            "npm:@nx/node",
+            "npm:@nx/workspace",
+            "npm:@swc-node/register",
+            "npm:@swc/core",
+            "npm:@swc/helpers",
+            "npm:@types/express",
+            "npm:@types/jest",
+            "npm:@types/node",
+            "npm:esbuild",
+            "npm:eslint",
+            "npm:eslint-config-prettier",
+            "npm:jest",
+            "npm:jest-environment-node",
+            "npm:nx",
+            "npm:prettier",
+            "npm:ts-jest",
+            "npm:ts-node",
+            "npm:tslib",
+            "npm:typescript",
+            "npm:typescript-eslint",
+            "npm:axios",
+            "npm:crypto",
+            "npm:dotenv",
+            "npm:express",
+            "npm:nodemon"
+          ]
+        },
+        {
+          "file": "src/index.ts",
+          "hash": "12149743368366419632",
+          "deps": [
+            "npm:dotenv"
+          ]
+        },
+        {
+          "file": "src/services/krakenService.ts",
+          "hash": "560191236419118836",
+          "deps": [
+            "npm:axios",
+            "npm:dotenv"
+          ]
+        },
+        {
+          "file": "src/tests/krakenService.test.ts",
+          "hash": "4774717651427767148",
+          "deps": [
+            "npm:axios"
+          ]
+        },
+        {
+          "file": "src/tests/sample.test.ts",
+          "hash": "6501161040329199602"
+        },
+        {
+          "file": "test-results/.last-run.json",
+          "hash": "14694065644177241415"
+        },
+        {
+          "file": "tmp/.DS_Store",
+          "hash": "15606447675291717340"
+        },
+        {
+          "file": "tmp/scraper/main-with-require-overrides.js",
+          "hash": "15890941867276219376"
+        },
+        {
+          "file": "tsconfig.base.json",
+          "hash": "16936441711144470533"
+        },
+        {
+          "file": "tsconfig.json",
+          "hash": "1354329187810444263"
+        }
+      ],
+      "scraper": [
+        {
+          "file": "apps/scraper/Dockerfile",
+          "hash": "8847182169128048037"
+        },
+        {
+          "file": "apps/scraper/eslint.config.mjs",
+          "hash": "2624537849564014525"
+        },
+        {
+          "file": "apps/scraper/jest.config.ts",
+          "hash": "8594017318007576488"
+        },
+        {
+          "file": "apps/scraper/project.json",
+          "hash": "6775751690647778797"
+        },
+        {
+          "file": "apps/scraper/src/main.ts",
+          "hash": "7489836767010576111",
+          "deps": [
+            "npm:express"
+          ]
+        },
+        {
+          "file": "apps/scraper/src/services/krakenService.test.ts",
+          "hash": "3046405231025116031",
+          "deps": [
+            "npm:axios"
+          ]
+        },
+        {
+          "file": "apps/scraper/src/services/krakenService.ts",
+          "hash": "11423102511738199048",
+          "deps": [
+            "npm:axios",
+            "npm:dotenv"
+          ]
+        },
+        {
+          "file": "apps/scraper/tsconfig.app.json",
+          "hash": "11137898450640994363"
+        },
+        {
+          "file": "apps/scraper/tsconfig.json",
+          "hash": "3490524966360018312"
+        },
+        {
+          "file": "apps/scraper/tsconfig.spec.json",
+          "hash": "6622138706846345436"
+        }
+      ]
+    }
+  }
+}

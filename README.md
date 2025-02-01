@@ -1,80 +1,82 @@
-# CactusVoid
+# CactusvoidMonorepo
 
-![CI](https://github.com/kevinegstorf/CactusVoid/actions/workflows/ci.yml/badge.svg)
+<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
-## Getting Started
+✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
 
-### Prerequisites
+[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/node?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
 
-- Node.js (v14 or higher)
-- npm (v6 or higher)
+## Finish your CI setup
 
-### Installation
+[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/MhJx6veMiZ)
 
-1. Clone the repository:
 
-   ```sh
-   git clone <repository-url>
-   cd cactusvoid
-   ```
+## Run tasks
 
-2. Install dependencies:
+To run the dev server for your app, use:
 
-   ```sh
-   npm install
-   ```
+```sh
+npx nx serve scraper
+```
 
-3. Create a [.env](http://_vscodecontentref_/1) file in the root directory and add the following environment variables:
+To create a production bundle:
 
-   ```sh
-   KRAKEN_API_KEY=your_api_key
-   KRAKEN_API_SECRET=your_api_secret
-   DB_CONNECTION_STRING=your_database_connection_string
-   ```
+```sh
+npx nx build scraper
+```
 
-   You can use the [.env-example](http://_vscodecontentref_/2) file as a reference.
+To see all available targets to run for a project, run:
 
-### Running the Project
+```sh
+npx nx show project scraper
+```
 
-- To start the project:
+These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
 
-  ```sh
-  npm start
-  ```
+[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
-- To start the project in development mode with hot-reloading:
+## Add new projects
 
-  ```sh
-  npm run dev
-  ```
+While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
 
-- To build the project:
+Use the plugin's generator to create new projects.
 
-  ```sh
-  npm run build
-  ```
+To generate a new application, use:
 
-- To run tests:
-  ```sh
-  npm test
-  ```
+```sh
+npx nx g @nx/node:app demo
+```
 
-### Project Structure
+To generate a new library, use:
 
-- [src](http://_vscodecontentref_/3): Contains the source code
-  - `database/`: Database-related code
-  - `services/`: Service layer code
-  - `tasks/`: Scheduled tasks
-  - `tests/`: Test files
-  - `utils/`: Utility functions
+```sh
+npx nx g @nx/node:lib mylib
+```
 
-### Configuration
+You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
 
-- [tsconfig.json](http://_vscodecontentref_/4): TypeScript configuration
-- [jest.config.js](http://_vscodecontentref_/5): Jest configuration
-- [.env](http://_vscodecontentref_/6): Environment variables (not included in the repository)
-- [.env-example](http://_vscodecontentref_/7): Example environment variables file
+[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
-### License
 
-This project is licensed under the ISC License.# CactusVoid
+[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+
+## Install Nx Console
+
+Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+
+[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+
+## Useful links
+
+Learn more:
+
+- [Learn more about this workspace setup](https://nx.dev/nx-api/node?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
+- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+
+And join the Nx community:
+- [Discord](https://go.nx.dev/community)
+- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
+- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
+- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
