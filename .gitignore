@@ -1,3 +1,18 @@
+# Environment variables
 .env
+
+# Node modules
 node_modules
+
+# Distribution folder
 /dist
+
+# Nx cache
+.nx
+
+# Nx outputs
+/dist
+
+# Temporary folders
+/tmp
+/out

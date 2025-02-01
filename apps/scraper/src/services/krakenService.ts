@@ -8,6 +8,7 @@ const KRAKEN_API_BASE_URL = 'https://api.kraken.com';
 const getApiKey = () => process.env.KRAKEN_API_KEY || '';
 const getApiSecret = () => process.env.KRAKEN_API_SECRET || '';
 
+
 const createSignature = (
   path: string,
   nonce: string,
@@ -57,11 +58,11 @@ const krakenRequest = async (
       ? axios.get(url, { headers })
       : axios.post(url, body, { headers }));
     return response.data;
-  } catch (error) {
+  } catch (error: any) {
     if (axios.isAxiosError(error)) {
       console.error('Kraken API error:', error.response?.data || error.message);
     } else {
-      console.error('Kraken API error:', (error as Error).message);
+      console.error('Kraken API error:', error.message);
     }
     throw error;
   }
