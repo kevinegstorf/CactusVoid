@@ -1,5 +1,8 @@
 # CactusvoidMonorepo
 
+
+![CI](https://github.com/kevinegstorf/CactusVoid/actions/workflows/ci.yml/badge.svg)
+
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
 ✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
@@ -80,3 +83,12 @@ And join the Nx community:
 - [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
 - [Our Youtube channel](https://www.youtube.com/@nxdevtools)
 - [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+
+
+Create a [.env](http://_vscodecontentref_/1) file in the root directory and add the following environment variables:
+
+   ```sh
+   KRAKEN_API_KEY=your_api_key
+   KRAKEN_API_SECRET=your_api_secret
+   DB_CONNECTION_STRING=your_database_connection_string
+   ```

@@ -26,13 +26,10 @@ jobs:
         run: npm ci
 
       - name: Lint the code
-        run: npm run lint
-
-      - name: Format the code
-        run: npm run format
-
-      - name: Build the project
-        run: npm run build
+        run: npx nx lint
 
       - name: Run tests
-        run: npm test
+        run: npx nx test
+
+      - name: Build the project
+        run: npx nx build
