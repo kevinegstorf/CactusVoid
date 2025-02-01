@@ -16,3 +16,6 @@ node_modules
 # Temporary folders
 /tmp
 /out
+
+/test-results
+/tmp
