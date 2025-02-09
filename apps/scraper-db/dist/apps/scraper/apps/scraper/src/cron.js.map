@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../../../../scraper/src/cron.ts"],
+  "sourcesContent": ["import cron from 'node-cron';\nimport crypto from 'crypto';\nimport { KrakenService } from './services/krakenService';\nimport { db } from './db';\nimport { tickerDataTable } from './schema';\n\nconst TIME = '*/15 * * * *'\n// Schedule the cron job to run every 15 minutes\ncron.schedule('* * * * *', async () => {\n  try {\n    console.log('Fetching ticker data...');\n    const tickerData = await KrakenService.publicRequest('/public/Ticker', {\n      pair: 'BTCUSD', // Example: Bitcoin to USD\n    });\n\n    // Insert the data into the database\n    await db.insert(tickerDataTable).values({\n      id: crypto.randomUUID(), // Generate a unique ID\n      data: tickerData, // Store the ticker data as JSONB\n    });\n\n    console.log('Ticker data saved to database:', tickerData);\n  } catch (error) {\n    console.error('Error fetching or saving ticker data:', error);\n  }\n});\n\nconsole.log('Cron job scheduled');"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;AAAA,uBAAiB;AACjB,oBAAmB;AACnB,2BAA8B;AAC9B,gBAAmB;AACnB,oBAAgC;AAEhC,MAAM,OAAO;AAEb,iBAAAA,QAAK,SAAS,aAAa,YAAY;AACrC,MAAI;AACF,YAAQ,IAAI,yBAAyB;AACrC,UAAM,aAAa,MAAM,mCAAc,cAAc,kBAAkB;AAAA,MACrE,MAAM;AAAA;AAAA,IACR,CAAC;AAGD,UAAM,aAAG,OAAO,6BAAe,EAAE,OAAO;AAAA,MACtC,IAAI,cAAAC,QAAO,WAAW;AAAA;AAAA,MACtB,MAAM;AAAA;AAAA,IACR,CAAC;AAED,YAAQ,IAAI,kCAAkC,UAAU;AAAA,EAC1D,SAAS,OAAO;AACd,YAAQ,MAAM,yCAAyC,KAAK;AAAA,EAC9D;AACF,CAAC;AAED,QAAQ,IAAI,oBAAoB;",
+  "names": ["cron", "crypto"]
+}

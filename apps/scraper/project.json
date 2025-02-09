@@ -5,6 +5,43 @@
   "projectType": "application",
   "tags": [],
   "targets": {
+    "build-cron": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/apps/scraper",
+        "format": ["cjs"],
+        "bundle": false,
+        "main": "apps/scraper/src/cron.ts",
+        "tsConfig": "apps/scraper/tsconfig.app.json",
+        "assets": ["apps/scraper/src/assets"],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      }
+    },
+    "start-cron": {
+      "executor": "@nx/js:node",
+      "dependsOn": ["build-cron"],
+      "options": {
+        "buildTarget": "scraper:build-cron",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "scraper:build-cron:development"
+        },
+        "production": {
+          "buildTarget": "scraper:build-cron:production"
+        }
+      }
+    },
     "build": {
       "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],

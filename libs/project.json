@@ -1,0 +1,30 @@
+{
+  "name": "backtesting",
+  "root": "libs/backtesting",
+  "sourceRoot": "libs/backtesting/src",
+  "projectType": "library",
+  "targets": {
+    "run": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx ts-node libs/backtesting/src/index.ts"
+      }
+    },
+    "build": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "outputPath": "dist/libs/backtesting",
+        "main": "libs/backtesting/src/index.ts",
+        "tsConfig": "libs/backtesting/tsconfig.lib.json",
+        "assets": []
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/backtesting/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@cactusvoid/backtesting/*": ["libs/backtesting/src/*"],
+      "@cactusvoid/scraper/*": ["apps/scraper/src/*"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -6,15 +6,21 @@
     "app:scraper:serve": "nx serve scraper",
     "app:scraper:build": "nx build scraper",
     "app:scraper:lint": "nx lint scraper",
-    "app:scraper:test": "nx test scraper"
+    "app:scraper:test": "nx test scraper",
+    "app:cron:start": "nx run scraper:cron",
+    "lib:backtest:serve": "nx serve backtesting"
   },
   "private": true,
   "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
     "axios": "^1.7.9",
     "crypto": "^1.0.1",
     "dotenv": "^16.4.7",
+    "drizzle-orm": "^0.39.1",
     "express": "^4.21.2",
-    "nodemon": "^3.1.9"
+    "node-cron": "^3.0.3",
+    "nodemon": "^3.1.9",
+    "pg": "^8.13.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
@@ -31,6 +37,7 @@
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.12",
     "@types/node": "~18.16.9",
+    "drizzle-kit": "^0.30.4",
     "esbuild": "^0.19.2",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^9.0.0",
@@ -41,6 +48,7 @@
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
     "tslib": "^2.3.0",
+    "tsx": "^4.19.2",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.19.0"
   }

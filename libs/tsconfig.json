@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "types": ["node"],
+    "rootDir": "./libs", // Update rootDir to point to the correct directory
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES6",
+    "module": "commonjs",
+    "sourceMap": true
+  },
+  "include": ["libs/**/*.ts"], // Update include to point to the correct directory
+  "exclude": ["node_modules", "dist"]
+}
